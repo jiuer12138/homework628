@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+</head>
+
+<body>
+    <script>
+        // 作业1
+        let str = 'asfeksahjfaioshioashdasiohfjkadasdadadgrgrsbfjka'
+        let arr = [...str]
+        let countObj = arr.reduce((arr, item) => {
+            if (item in arr) {
+                arr[item]++
+            } else {
+                arr[item] = 1
+            }
+            return arr
+        }, {})
+        console.log(countObj);
+        // 作业2
+        let arr1 = [{ a: 100 }, { a: 20 }, { a: -10 }]
+        let sum = arr1.reduce((pre, cur) => {
+            return pre + cur.a
+        }, 0)
+        console.log(sum);
+        // 作业3
+        // http://www.baidu.com?name=zhangsan&age=18&sex=nan#
+        // 解析出
+        // {name: 'zhangsan',age: 18, sex: 'nan' }
+        let httpStr = 'http://www.baidu.com?name=zhangsan&age=18&sex=nan#'
+        const analysisStr = (str) => {
+            let index1 = str.indexOf('?')
+            let index2 = str.indexOf('#')
+            const arr = str.slice(index1 + 1, index2).split('&');
+            const obj = arr.reduce((pre, cur) => {
+                const [k, val] = cur.split('=');
+                pre[k] = val;
+                return pre;
+            }, {})
+            console.log(obj);
+            return obj;
+        }
+        analysisStr(httpStr)
+    </script>
+</body>
+
+</html>
